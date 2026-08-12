@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MAIS LETAL — WT Dos Santos x CEO Corage</title>
+<meta name="description" content="MAIS LETAL — o novo single de WT Dos Santos x CEO Corage. Novo Império.">
+<link rel="icon" href="assets/logo-pyramid-cutout.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Metal+Mania&family=Rye&family=Special+Elite&family=PT+Serif:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --black:#0a0908;
+    --black-2:#141210;
+    --bone:#e7dfc9;
+    --bone-dim:#c9c0a7;
+    --ash:#8f8776;
+    --ash-dim:#5c574a;
+    --rust:#8a2a1e;
+    --rust-bright:#b8412f;
+    --gold:#b0903f;
+    --line: rgba(231,223,201,0.14);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--black);
+    color:var(--bone);
+    font-family:'PT Serif', serif;
+    overflow-x:hidden;
+    position:relative;
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.001s !important; animation-iteration-count:1 !important; transition-duration:0.001s !important;}
+  }
+
+  /* ===== grain / scan overlay ===== */
+  .grain{
+    position:fixed; inset:0; z-index:999; pointer-events:none; mix-blend-mode:overlay; opacity:.5;
+  }
+  .grain svg{width:100%;height:100%;}
+  .scanlines{
+    position:fixed; inset:0; z-index:998; pointer-events:none;
+    background:repeating-linear-gradient(to bottom, rgba(0,0,0,0.16) 0px, rgba(0,0,0,0.16) 1px, transparent 2px, transparent 3px);
+    opacity:.35; animation:flicker 6s infinite;
+  }
+  @keyframes flicker{
+    0%,100%{opacity:.28;} 42%{opacity:.4;} 44%{opacity:.2;} 70%{opacity:.34;}
+  }
+  .vignette{
+    position:fixed; inset:0; z-index:997; pointer-events:none;
+    background:radial-gradient(ellipse at center, transparent 45%, rgba(0,0,0,0.65) 100%);
+  }
+
+  a{color:inherit; text-decoration:none;}
+  img{display:block; max-width:100%;}
+
+  .eyebrow{
+    font-family:'Special Elite', monospace;
+    letter-spacing:.35em;
+    text-transform:uppercase;
+    font-size:.68rem;
+    color:var(--ash);
+  }
+
+  .rip-top, .rip-bottom{
+    position:relative; width:100%; height:26px; z-index:5;
+  }
+  .rip-top{
+    background: var(--black);
+    clip-path: polygon(0% 100%,3% 40%,7% 90%,11% 20%,16% 70%,21% 10%,26% 60%,31% 15%,36% 80%,41% 30%,46% 65%,51% 5%,56% 55%,61% 25%,66% 75%,71% 10%,76% 60%,81% 20%,86% 70%,91% 15%,96% 55%,100% 100%,100% 0%,0% 0%);
+  }
+  .rip-top::after{
+    content:""; position:absolute; left:0; right:0; top:-1px; height:2px;
+    background:linear-gradient(to right, transparent, rgba(176,144,63,.35) 15%, rgba(231,223,201,.25) 50%, rgba(176,144,63,.35) 85%, transparent);
+    clip-path: polygon(0% 100%,3% 40%,7% 90%,11% 20%,16% 70%,21% 10%,26% 60%,31% 15%,36% 80%,41% 30%,46% 65%,51% 5%,56% 55%,61% 25%,66% 75%,71% 10%,76% 60%,81% 20%,86% 70%,91% 15%,96% 55%,100% 100%);
+  }
+
+  /* ===== nav ===== */
+  header.site-nav{
+    position:fixed; top:0; left:0; right:0; z-index:200;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:14px 28px;
+    background:linear-gradient(to bottom, rgba(10,9,8,0.96) 60%, rgba(10,9,8,0));
+    backdrop-filter:blur(2px);
+    border-bottom:1px solid rgba(231,223,201,.08);
+  }
+  .brand{display:flex; align-items:center; gap:12px;}
+  .brand .seal{
+    position:relative; width:46px; height:46px; flex:none;
+    display:flex; align-items:center; justify-content:center;
+    border-radius:50%; border:1px solid rgba(176,144,63,.55);
+    background:radial-gradient(circle at 35% 30%, rgba(176,144,63,.16), transparent 70%);
+  }
+  .brand .seal img{width:34px; height:34px; filter:drop-shadow(0 0 8px rgba(176,144,63,.6)); object-fit:contain;}
+  .brand .brand-text{display:flex; flex-direction:column; line-height:1;}
+  .brand .brand-text b{
+    font-family:'Rye', serif; font-size:1.02rem; letter-spacing:.08em; color:var(--bone);
+  }
+  .brand .brand-text small{
+    font-family:'Special Elite',monospace; font-size:.52rem; letter-spacing:.24em; color:var(--gold); margin-top:3px;
+  }
+  nav.links{display:flex; gap:26px;}
+  nav.links a{
+    font-family:'Special Elite', monospace; font-size:.72rem; letter-spacing:.18em; text-transform:uppercase;
+    color:var(--ash); transition:color .2s;
+  }
+  nav.links a:hover{color:var(--rust-bright);}
+
+  /* ===== hero ===== */
+  .hero{
+    position:relative; min-height:100svh; display:flex; align-items:center; justify-content:center;
+    padding:140px 20px 80px;
+    background:
+      radial-gradient(ellipse at 50% 0%, rgba(138,42,30,0.10), transparent 55%),
+      var(--black);
+  }
+  .hero::before{
+    content:""; position:absolute; inset:0;
+    background-image:url('assets/gargoyles-bw.png');
+    background-size:900px; background-position:110% 10%; background-repeat:no-repeat;
+    opacity:.14; filter:grayscale(1);
+    pointer-events:none;
+  }
+  /* poeira caindo */
+  .dust{position:absolute; inset:0; overflow:hidden; pointer-events:none; z-index:1;}
+  .dust span{
+    position:absolute; top:-5%; width:2px; height:2px; background:var(--ash);
+    border-radius:50%; opacity:0; animation:fall linear infinite;
+  }
+  @keyframes fall{
+    0%{opacity:0; transform:translateY(0) translateX(0);}
+    8%{opacity:.5;}
+    92%{opacity:.3;}
+    100%{opacity:0; transform:translateY(110vh) translateX(20px);}
+  }
+  /* glitch de abertura no título */
+  @keyframes glitch1{
+    0%,100%{clip-path:inset(0 0 0 0); transform:translate(0,0);}
+    10%{clip-path:inset(10% 0 60% 0); transform:translate(-3px,0);}
+    20%{clip-path:inset(60% 0 5% 0); transform:translate(3px,0);}
+    30%{clip-path:inset(30% 0 40% 0); transform:translate(-2px,0);}
+    40%{clip-path:inset(0 0 0 0); transform:translate(0,0);}
+  }
+  #glitchTitle{position:relative;}
+  #glitchTitle::before, #glitchTitle::after{
+    content:'MAIS\A LETAL'; white-space:pre; position:absolute; left:0; top:0; width:100%; height:100%;
+    background:transparent;
+  }
+  #glitchTitle.glitching::before{color:var(--rust-bright); animation:glitch1 .5s steps(2) 1; mix-blend-mode:screen; opacity:.8;}
+  #glitchTitle.glitching::after{color:#4d8f8a; animation:glitch1 .5s steps(2) reverse 1; mix-blend-mode:screen; opacity:.6;}
+  .hero-inner{
+    position:relative; z-index:2; display:grid; grid-template-columns: 1.05fr 1fr; gap:56px; max-width:1180px; width:100%; align-items:center;
+  }
+  .hero-cover{
+    position:relative;
+    transform:rotate(-2.4deg);
+    max-width:520px;
+    margin:0 auto;
+  }
+  .hero-cover .frame{
+    position:relative; width:100%; aspect-ratio:1/1; overflow:hidden;
+    border:1px solid rgba(231,223,201,.18);
+    box-shadow: 0 30px 70px rgba(0,0,0,.75);
+    background:var(--black);
+  }
+  .hero-cover img{
+    width:100%; height:100%; object-fit:contain; object-position:center;
+    filter:contrast(1.05) saturate(.95);
+  }
+  .tape{
+    position:absolute; width:96px; height:30px;
+    background:repeating-linear-gradient(115deg, rgba(220,214,196,.85) 0 3px, rgba(196,189,168,.75) 3px 6px);
+    box-shadow:0 3px 6px rgba(0,0,0,.5);
+    opacity:.88;
+  }
+  .tape.t1{top:-14px; left:8%; transform:rotate(-7deg);}
+  .tape.t2{top:-14px; right:6%; transform:rotate(6deg);}
+  .tape.t3{bottom:-14px; left:34%; transform:rotate(3deg);}
+  .advisory-badge{
+    position:absolute; bottom:-18px; right:-16px;
+    background:#fff; color:#000; padding:7px 10px; transform:rotate(4deg);
+    font-family:'Special Elite',monospace; font-size:.55rem; line-height:1.15; text-align:center; letter-spacing:.03em;
+    box-shadow:0 6px 16px rgba(0,0,0,.6); border:1px solid #000;
+  }
+  .advisory-badge b{display:block; font-size:.72rem; letter-spacing:.05em;}
+
+  .hero-copy{position:relative; z-index:2;}
+  .hero-copy .eyebrow{margin-bottom:18px;}
+  .hero-title{
+    font-family:'Metal Mania', 'Rye', serif;
+    font-size:clamp(3.2rem, 7vw, 5.6rem);
+    line-height:.92;
+    color:var(--bone);
+    text-shadow: 2px 2px 0 rgba(0,0,0,.6), 0 0 30px rgba(138,42,30,.25);
+    letter-spacing:.01em;
+  }
+  .hero-artists{
+    font-family:'Rye', serif; font-size:1.05rem; margin-top:14px; color:var(--bone-dim); letter-spacing:.02em;
+  }
+  .hero-artists .x{color:var(--rust-bright); margin:0 .35em;}
+  .hero-desc{
+    margin-top:26px; max-width:46ch; color:var(--ash); font-size:1rem; line-height:1.75; font-style:italic;
+  }
+  .hero-actions{margin-top:36px; display:flex; flex-wrap:wrap; gap:14px; align-items:center;}
+  .btn{
+    font-family:'Special Elite', monospace; font-size:.78rem; letter-spacing:.14em; text-transform:uppercase;
+    padding:14px 22px; border:1px solid var(--bone-dim); color:var(--bone);
+    position:relative; transition:all .25s ease;
+  }
+  .btn.primary{background:var(--rust); border-color:var(--rust); color:var(--bone);}
+  .btn.primary:hover{background:var(--rust-bright); border-color:var(--rust-bright); transform:translateY(-2px);}
+  .btn.ghost:hover{border-color:var(--bone); background:rgba(231,223,201,.06); transform:translateY(-2px);}
+  .price-tag{
+    font-family:'Special Elite',monospace; font-size:.72rem; color:var(--ash); border:1px dashed var(--ash-dim); padding:6px 10px;
+  }
+
+  /* ===== section shell ===== */
+  section{position:relative; padding:96px 24px; max-width:1180px; margin:0 auto;}
+  .section-head{margin-bottom:56px; text-align:center;}
+  .section-head .eyebrow{justify-content:center; display:block; margin-bottom:14px;}
+  .section-title{
+    font-family:'Rye', serif; font-size:clamp(2.1rem,4vw,3rem); color:var(--bone);
+    letter-spacing:.02em;
+  }
+  .divider{
+    width:100%; height:1px; background:linear-gradient(to right, transparent, var(--line) 20%, var(--line) 80%, transparent);
+    margin:0 auto;
+  }
+
+  /* ===== about ===== */
+  .about{display:grid; grid-template-columns: .9fr 1.1fr; gap:60px; align-items:center;}
+  .about-art{position:relative;}
+  .about-art img{filter:grayscale(1) contrast(1.1); opacity:.92; transform:rotate(1.5deg);}
+  .reveal{opacity:0; transform:translateY(24px); filter:blur(2px); transition:opacity .7s ease, transform .7s ease, filter .7s ease;}
+  .reveal.in{opacity:1; transform:translateY(0); filter:blur(0);}
+  .reveal.jitter.in{animation:settle .4s ease .05s;}
+  @keyframes settle{
+    0%{transform:translate(3px,-2px);} 30%{transform:translate(-2px,1px);} 60%{transform:translate(1px,-1px);} 100%{transform:translate(0,0);}
+  }
+  .about-text p{color:var(--bone-dim); line-height:1.9; margin-bottom:20px; font-size:1.02rem;}
+
+  .stamp-row{display:flex; gap:18px; margin-top:34px; flex-wrap:wrap;}
+  .stamp-row span{
+    font-family:'Special Elite',monospace; font-size:.66rem; letter-spacing:.12em; color:var(--ash);
+    border:1px solid var(--ash-dim); padding:6px 12px; text-transform:uppercase;
+  }
+
+  /* ===== wanted / artists ===== */
+  .wanted-wrap{display:flex; justify-content:center;}
+  .wanted-wrap img{
+    max-width:640px; width:100%; box-shadow:0 30px 60px rgba(0,0,0,.6); border:1px solid var(--line);
+  }
+  .artist-caption{
+    text-align:center; margin-top:26px; color:var(--ash); font-family:'Special Elite',monospace; font-size:.78rem; letter-spacing:.1em;
+  }
+
+  /* ===== listen ===== */
+  .listen{
+    background:
+      linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.35) 100%),
+      var(--black-2);
+    border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+  }
+  .platform-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:16px; max-width:900px; margin:0 auto;}
+  .platform{
+    display:flex; align-items:center; justify-content:space-between; gap:14px;
+    padding:20px 22px; border:1px solid var(--line); background:rgba(231,223,201,.02);
+    transition:all .25s ease;
+  }
+  .platform:hover{border-color:var(--rust-bright); background:rgba(138,42,30,.08); transform:translateX(4px);}
+  .platform .name{font-family:'Rye',serif; font-size:1rem; color:var(--bone);}
+  .platform .go{font-family:'Special Elite',monospace; font-size:.7rem; color:var(--ash); letter-spacing:.1em;}
+  .platform:hover .go{color:var(--rust-bright);}
+
+  /* ===== gallery ===== */
+  .gallery{display:flex; flex-wrap:wrap; justify-content:center; gap:34px 24px; padding-top:10px;}
+  .gal-item{
+    position:relative; background:var(--bone-dim); padding:10px 10px 34px; width:280px;
+    box-shadow:0 18px 40px rgba(0,0,0,.55);
+  }
+  .gal-item:nth-child(1){transform:rotate(-3.2deg);}
+  .gal-item:nth-child(2){transform:rotate(2.4deg); margin-top:22px;}
+  .gal-item:nth-child(3){transform:rotate(-1.6deg);}
+  .gal-item:hover{transform:rotate(0deg) scale(1.03); z-index:3;}
+  .gal-item .polaroid-tape{
+    position:absolute; top:-10px; left:50%; transform:translateX(-50%) rotate(-3deg);
+    width:70px; height:22px;
+    background:repeating-linear-gradient(115deg, rgba(220,214,196,.85) 0 3px, rgba(196,189,168,.7) 3px 6px);
+    box-shadow:0 2px 5px rgba(0,0,0,.5); opacity:.9;
+  }
+  .gal-item .frame{overflow:hidden; aspect-ratio:1/1; background:#000;}
+  .gal-item img{width:100%; height:100%; object-fit:cover; filter:grayscale(.4) contrast(1.05); transition:transform .5s ease, filter .5s ease;}
+  .gal-item:hover img{transform:scale(1.06); filter:grayscale(0) contrast(1.1);}
+  .gal-item .tag{
+    display:block; text-align:center; margin-top:12px;
+    font-family:'Special Elite',monospace; font-size:.66rem;
+    letter-spacing:.1em; text-transform:uppercase; color:#1a1712;
+  }
+
+  /* ===== footer ===== */
+  footer{
+    padding:90px 24px 50px; text-align:center; border-top:1px solid var(--line);
+    background:radial-gradient(ellipse at 50% 0%, rgba(176,144,63,.06), transparent 60%);
+  }
+  .footer-seal{
+    width:120px; height:120px; margin:0 auto 22px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    border:1px solid rgba(176,144,63,.5);
+    background:radial-gradient(circle at 40% 30%, rgba(176,144,63,.14), transparent 70%);
+    box-shadow:0 0 50px rgba(176,144,63,.12), inset 0 0 30px rgba(0,0,0,.5);
+  }
+  .footer-seal img{width:82px; height:82px; object-fit:contain; filter:drop-shadow(0 0 14px rgba(176,144,63,.55));}
+  footer .imperio{
+    font-family:'Rye', serif; font-size:1.3rem; letter-spacing:.14em; color:var(--bone); margin-bottom:6px;
+  }
+  footer .imperio-sub{
+    font-family:'Special Elite',monospace; font-size:.6rem; letter-spacing:.3em; color:var(--gold); margin-bottom:44px;
+  }
+  footer img.lockup{max-width:280px; margin:0 auto 34px; opacity:.9;}
+  .footer-links{display:flex; gap:22px; justify-content:center; flex-wrap:wrap; margin-bottom:26px;}
+  .footer-links a{font-family:'Special Elite',monospace; font-size:.72rem; letter-spacing:.14em; text-transform:uppercase; color:var(--ash);}
+  .footer-links a:hover{color:var(--rust-bright);}
+  footer .fine{font-family:'Special Elite',monospace; font-size:.64rem; color:var(--ash-dim); letter-spacing:.06em;}
+
+  @media (max-width: 880px){
+    .hero-inner{grid-template-columns:1fr; text-align:left;}
+    .about{grid-template-columns:1fr;}
+    nav.links{display:none;}
+  }
+  @media (max-width:560px){
+    .hero-title{font-size:2.6rem;}
+    .gal-item{width:100%; max-width:300px;}
+  }
+</style>
+</head>
+<body>
+
+  <div class="grain">
+    <svg xmlns="http://www.w3.org/2000/svg">
+      <filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter>
+      <rect width="100%" height="100%" filter="url(#n)" opacity="0.5"/>
+    </svg>
+  </div>
+  <div class="scanlines"></div>
+  <div class="vignette"></div>
+
+  <header class="site-nav">
+    <div class="brand">
+      <div class="seal"><img src="assets/logo-pyramid-cutout.png" alt="Novo Império"></div>
+      <div class="brand-text">
+        <b>NOVO IMPÉRIO</b>
+        <small>UNDERGROUND STUDIO</small>
+      </div>
+    </div>
+    <nav class="links">
+      <a href="#sobre">O Single</a>
+      <a href="#procurados">Procurados</a>
+      <a href="#ouca">Ouça</a>
+      <a href="#galeria">Galeria</a>
+    </nav>
+  </header>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero" id="topo">
+    <div class="dust" id="dustField"></div>
+    <div class="hero-inner">
+      <div class="hero-cover">
+        <div class="tape t1"></div>
+        <div class="tape t2"></div>
+        <div class="frame">
+          <img src="assets/cover.png" alt="Capa do single Mais Letal">
+        </div>
+        <div class="advisory-badge">PARENTAL<br><b>ADVISORY</b><br>EXPLICIT CONTENT</div>
+      </div>
+      <div class="hero-copy">
+        <span class="eyebrow">Novo Single</span>
+        <h1 class="hero-title" id="glitchTitle">MAIS<br>LETAL</h1>
+        <p class="hero-artists">WT DOS SANTOS <span class="x">×</span> CEO CORAGE</p>
+        <!-- EDITAR: coloque aqui a descrição real do single, se quiser uma -->
+        <p class="hero-desc">[ escreva aqui uma frase curta sobre a faixa, ou apague esta linha ]</p>
+        <div class="hero-actions">
+          <a href="#ouca" class="btn primary">▶ Ouvir Agora</a>
+          <a href="#sobre" class="btn ghost">Sobre</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="rip-top"></div>
+
+  <!-- ===== SOBRE ===== -->
+  <section id="sobre" class="about">
+    <div class="about-art reveal jitter">
+      <img src="assets/gothic-frame.png" alt="Emblema Mais Letal">
+    </div>
+    <div class="about-text">
+      <span class="eyebrow">O lançamento</span>
+      <h2 class="section-title" style="margin:14px 0 26px;">Sobre o single</h2>
+      <!-- EDITAR: substitua este parágrafo pela descrição real que vocês quiserem usar -->
+      <p>[ espaço para o texto sobre a faixa — quem fez, de onde veio, o que ela representa. Escreva do seu jeito. ]</p>
+      <div class="stamp-row">
+        <span>Prod. by WTD</span>
+        <span>Voando Alto Studio</span>
+        <span>Novo Império</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider" style="max-width:1180px;"></div>
+
+  <!-- ===== PROCURADOS ===== -->
+  <section id="procurados">
+    <div class="section-head">
+      <span class="eyebrow">Recompensa · $15.000.000</span>
+      <h2 class="section-title">Procurados</h2>
+    </div>
+    <div class="wanted-wrap reveal jitter">
+      <img src="assets/wanted-brick.png" alt="Cartazes de procurado — WT Dos Santos e CEO Corage">
+    </div>
+    <p class="artist-caption">@WT2SANTOS &nbsp;·&nbsp; @CORVGE</p>
+  </section>
+
+  <!-- ===== OUÇA ===== -->
+  <section id="ouca" class="listen">
+    <div class="section-head">
+      <span class="eyebrow">Já tá tocando</span>
+      <h2 class="section-title">Ouça Mais Letal</h2>
+    </div>
+    <div class="platform-grid">
+      <a class="platform" href="#" target="_blank" rel="noopener">
+        <span class="name">Spotify</span><span class="go">Tocar →</span>
+      </a>
+      <a class="platform" href="#" target="_blank" rel="noopener">
+        <span class="name">Apple Music</span><span class="go">Tocar →</span>
+      </a>
+      <a class="platform" href="#" target="_blank" rel="noopener">
+        <span class="name">YouTube</span><span class="go">Assistir →</span>
+      </a>
+      <a class="platform" href="#" target="_blank" rel="noopener">
+        <span class="name">Deezer</span><span class="go">Tocar →</span>
+      </a>
+      <a class="platform" href="#" target="_blank" rel="noopener">
+        <span class="name">Amazon Music</span><span class="go">Tocar →</span>
+      </a>
+      <a class="platform" href="https://www.instagram.com/novoimper7o/" target="_blank" rel="noopener">
+        <span class="name">Instagram</span><span class="go">Seguir →</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- ===== GALERIA ===== -->
+  <section id="galeria">
+    <div class="section-head">
+      <span class="eyebrow">Bastidores</span>
+      <h2 class="section-title">Galeria</h2>
+    </div>
+    <div class="gallery">
+      <div class="gal-item reveal jitter">
+        <div class="polaroid-tape"></div>
+        <div class="frame"><img src="assets/gargoyles-bw.png" alt="Arte gárgulas"></div>
+        <span class="tag">Arte</span>
+      </div>
+      <div class="gal-item reveal jitter">
+        <div class="polaroid-tape"></div>
+        <div class="frame"><img src="assets/vinyl-wrapped.png" alt="Vinil lacrado"></div>
+        <span class="tag">Edição física</span>
+      </div>
+      <div class="gal-item reveal jitter">
+        <div class="polaroid-tape"></div>
+        <div class="frame"><img src="assets/sketch.png" alt="Rascunho zine"></div>
+        <span class="tag">Rascunho</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="rip-top"></div>
+
+  <footer>
+    <div class="footer-seal"><img src="assets/logo-pyramid-cutout.png" alt="Novo Império"></div>
+    <p class="imperio">NOVO IMPÉRIO</p>
+    <p class="imperio-sub">UNDERGROUND STUDIO</p>
+    <img class="lockup" src="assets/logo-lockup.png" alt="Mais Letal — selo Novo Império / Voando Alto Underground Studio">
+    <div class="footer-links">
+      <a href="#topo">Topo</a>
+      <a href="#sobre">O Single</a>
+      <a href="#procurados">Procurados</a>
+      <a href="#ouca">Ouça</a>
+      <a href="https://www.instagram.com/novoimper7o/" target="_blank" rel="noopener">Instagram</a>
+    </div>
+    <p class="fine">© MAIS LETAL — WT DOS SANTOS × CEO CORAGE · NOVO IMPÉRIO · TODOS OS DIREITOS RESERVADOS</p>
+  </footer>
+
+  <script>
+    // poeira/cinza caindo no hero
+    (function(){
+      var field = document.getElementById('dustField');
+      if(!field) return;
+      var n = window.innerWidth < 700 ? 18 : 34;
+      for(var i=0;i<n;i++){
+        var s = document.createElement('span');
+        var left = Math.random()*100;
+        var dur = 8 + Math.random()*10;
+        var delay = Math.random()*10;
+        var size = (1 + Math.random()*1.6).toFixed(1);
+        s.style.left = left+'%';
+        s.style.animationDuration = dur+'s';
+        s.style.animationDelay = delay+'s';
+        s.style.width = size+'px';
+        s.style.height = size+'px';
+        field.appendChild(s);
+      }
+    })();
+
+    // glitch de abertura no título (uma vez, ao carregar)
+    (function(){
+      if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      var t = document.getElementById('glitchTitle');
+      if(!t) return;
+      setTimeout(function(){
+        t.classList.add('glitching');
+        setTimeout(function(){ t.classList.remove('glitching'); }, 550);
+      }, 250);
+    })();
+
+    // reveal ao rolar
+    (function(){
+      var items = document.querySelectorAll('.reveal');
+      if(!('IntersectionObserver' in window)){
+        items.forEach(function(el){ el.classList.add('in'); });
+        return;
+      }
+      var io = new IntersectionObserver(function(entries){
+        entries.forEach(function(entry){
+          if(entry.isIntersecting){
+            entry.target.classList.add('in');
+            io.unobserve(entry.target);
+          }
+        });
+      }, {threshold:.2});
+      items.forEach(function(el){ io.observe(el); });
+    })();
+  </script>
+</body>
+</html>
