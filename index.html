@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MAIS LETAL — WT Dos Santos x CEO Corage</title>
 <meta name="description" content="MAIS LETAL — o novo single de WT Dos Santos x CEO Corage. Novo Império.">
-<link rel="icon" href="assets/logo-pyramid-cutout.png">
+<link rel="icon" href="assets/logo-imperio-emblem.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Metal+Mania&family=Rye&family=Special+Elite&family=PT+Serif:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 <style>
@@ -80,26 +80,13 @@
   header.site-nav{
     position:fixed; top:0; left:0; right:0; z-index:200;
     display:flex; align-items:center; justify-content:space-between;
-    padding:14px 28px;
+    padding:10px 28px;
     background:linear-gradient(to bottom, rgba(10,9,8,0.96) 60%, rgba(10,9,8,0));
     backdrop-filter:blur(2px);
     border-bottom:1px solid rgba(231,223,201,.08);
   }
   .brand{display:flex; align-items:center; gap:12px;}
-  .brand .seal{
-    position:relative; width:46px; height:46px; flex:none;
-    display:flex; align-items:center; justify-content:center;
-    border-radius:50%; border:1px solid rgba(176,144,63,.55);
-    background:radial-gradient(circle at 35% 30%, rgba(176,144,63,.16), transparent 70%);
-  }
-  .brand .seal img{width:34px; height:34px; filter:drop-shadow(0 0 8px rgba(176,144,63,.6)); object-fit:contain;}
-  .brand .brand-text{display:flex; flex-direction:column; line-height:1;}
-  .brand .brand-text b{
-    font-family:'Rye', serif; font-size:1.02rem; letter-spacing:.08em; color:var(--bone);
-  }
-  .brand .brand-text small{
-    font-family:'Special Elite',monospace; font-size:.52rem; letter-spacing:.24em; color:var(--gold); margin-top:3px;
-  }
+  .brand .brand-logo{height:88px; width:auto; object-fit:contain;}
   nav.links{display:flex; gap:26px;}
   nav.links a{
     font-family:'Special Elite', monospace; font-size:.72rem; letter-spacing:.18em; text-transform:uppercase;
@@ -110,7 +97,7 @@
   /* ===== hero ===== */
   .hero{
     position:relative; min-height:100svh; display:flex; align-items:center; justify-content:center;
-    padding:140px 20px 80px;
+    padding:150px 20px 80px;
     background:
       radial-gradient(ellipse at 50% 0%, rgba(138,42,30,0.10), transparent 55%),
       var(--black);
@@ -215,6 +202,26 @@
     font-family:'Special Elite',monospace; font-size:.72rem; color:var(--ash); border:1px dashed var(--ash-dim); padding:6px 10px;
   }
 
+  /* botão bloqueado — sem filtro (pra não apagar o selo vermelho) */
+  .btn.locked{
+    background:var(--ash-dim); border-color:var(--ash-dim); color:var(--bone-dim);
+    pointer-events:none; cursor:not-allowed;
+  }
+  .btn.locked:hover{transform:none;}
+
+  /* corner "em breve" ribbon — sempre vermelho, nunca herda filtro do pai */
+  .corner-lock{position:relative;}
+  .corner-lock::after{
+    content:"EM BREVE";
+    position:absolute; top:-9px; right:-12px;
+    font-family:'Special Elite', monospace; font-size:.52rem; letter-spacing:.08em;
+    color:#fff; background:var(--rust-bright);
+    padding:3px 7px; transform:rotate(8deg);
+    box-shadow:0 3px 8px rgba(0,0,0,.5);
+    white-space:nowrap;
+    z-index:5;
+  }
+
   /* ===== section shell ===== */
   section{position:relative; padding:96px 24px; max-width:1180px; margin:0 auto;}
   .section-head{margin-bottom:56px; text-align:center;}
@@ -255,6 +262,45 @@
     text-align:center; margin-top:26px; color:var(--ash); font-family:'Special Elite',monospace; font-size:.78rem; letter-spacing:.1em;
   }
 
+  /* ===== making of — estilizado como polaroid de evidência com destaque forte ===== */
+  .makingof{
+    background:
+      radial-gradient(ellipse at 50% 30%, rgba(138,42,30,0.15), transparent 70%),
+      var(--black-2);
+    border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+    padding-top:84px; padding-bottom:104px;
+  }
+  .makingof .section-head{margin-bottom:44px;}
+  .makingof-frame{
+    max-width:380px; margin:0 auto; position:relative;
+    background:var(--bone-dim); color:#1a1712; padding:16px 16px 48px;
+    border:1px solid rgba(231,223,201,.3);
+    box-shadow:0 25px 60px rgba(0,0,0,.7), 0 0 40px rgba(138,42,30,.2);
+    transform:rotate(-1.5deg);
+  }
+  .makingof-frame:hover{transform:rotate(0deg) scale(1.02); transition:transform .3s ease;}
+  .makingof-frame .polaroid-tape{
+    position:absolute; top:-12px; left:50%; transform:translateX(-50%) rotate(-2deg);
+    width:96px; height:28px;
+    background:repeating-linear-gradient(115deg, rgba(220,214,196,.9) 0 3px, rgba(196,189,168,.8) 3px 6px);
+    box-shadow:0 3px 6px rgba(0,0,0,.5); opacity:.95; z-index:2;
+    pointer-events: none;
+  }
+  .makingof-frame .video-wrap{
+    position:relative; aspect-ratio:9/16; overflow:hidden; background:#000;
+    border:1px solid rgba(0,0,0,.2);
+  }
+  .makingof-frame video{
+    width:100%; height:100%; object-fit:cover;
+    pointer-events: auto !important;
+  }
+  .makingof-frame .tag{
+    display:block; text-align:center; margin-top:16px;
+    font-family:'Special Elite',monospace; font-size:.72rem;
+    letter-spacing:.14em; text-transform:uppercase; color:#2a251f;
+    pointer-events: none;
+  }
+
   /* ===== listen ===== */
   .listen{
     background:
@@ -272,6 +318,16 @@
   .platform .name{font-family:'Rye',serif; font-size:1rem; color:var(--bone);}
   .platform .go{font-family:'Special Elite',monospace; font-size:.7rem; color:var(--ash); letter-spacing:.1em;}
   .platform:hover .go{color:var(--rust-bright);}
+
+  /* bloqueado — sem filtro (senão o selo vermelho vira cinza também) */
+  .listen.locked .platform:not(.social){
+    border-color: var(--ash-dim);
+    background: rgba(143,135,118,.03);
+    pointer-events:none; cursor:not-allowed;
+  }
+  .listen.locked .platform:not(.social):hover{transform:none; border-color:var(--ash-dim); background:rgba(143,135,118,.03);}
+  .listen.locked .platform:not(.social) .name{color:var(--ash);}
+  .listen.locked .platform:not(.social) .go{color:var(--ash-dim);}
 
   /* ===== gallery ===== */
   .gallery{display:flex; flex-wrap:wrap; justify-content:center; gap:34px 24px; padding-top:10px;}
@@ -303,21 +359,6 @@
     padding:90px 24px 50px; text-align:center; border-top:1px solid var(--line);
     background:radial-gradient(ellipse at 50% 0%, rgba(176,144,63,.06), transparent 60%);
   }
-  .footer-seal{
-    width:120px; height:120px; margin:0 auto 22px; border-radius:50%;
-    display:flex; align-items:center; justify-content:center;
-    border:1px solid rgba(176,144,63,.5);
-    background:radial-gradient(circle at 40% 30%, rgba(176,144,63,.14), transparent 70%);
-    box-shadow:0 0 50px rgba(176,144,63,.12), inset 0 0 30px rgba(0,0,0,.5);
-  }
-  .footer-seal img{width:82px; height:82px; object-fit:contain; filter:drop-shadow(0 0 14px rgba(176,144,63,.55));}
-  footer .imperio{
-    font-family:'Rye', serif; font-size:1.3rem; letter-spacing:.14em; color:var(--bone); margin-bottom:6px;
-  }
-  footer .imperio-sub{
-    font-family:'Special Elite',monospace; font-size:.6rem; letter-spacing:.3em; color:var(--gold); margin-bottom:44px;
-  }
-  footer img.lockup{max-width:280px; margin:0 auto 34px; opacity:.9;}
   .footer-links{display:flex; gap:22px; justify-content:center; flex-wrap:wrap; margin-bottom:26px;}
   .footer-links a{font-family:'Special Elite',monospace; font-size:.72rem; letter-spacing:.14em; text-transform:uppercase; color:var(--ash);}
   .footer-links a:hover{color:var(--rust-bright);}
@@ -331,6 +372,8 @@
   @media (max-width:560px){
     .hero-title{font-size:2.6rem;}
     .gal-item{width:100%; max-width:300px;}
+    .brand .brand-logo{height:64px;}
+    .makingof-frame{max-width:300px;}
   }
 </style>
 </head>
@@ -347,14 +390,11 @@
 
   <header class="site-nav">
     <div class="brand">
-      <div class="seal"><img src="assets/logo-pyramid-cutout.png" alt="Novo Império"></div>
-      <div class="brand-text">
-        <b>NOVO IMPÉRIO</b>
-        <small>UNDERGROUND STUDIO</small>
-      </div>
+      <img class="brand-logo" src="assets/logo-imperio-full.png" alt="Novo Império">
     </div>
     <nav class="links">
       <a href="#sobre">O Single</a>
+      <a href="#makingof">Bastidores</a>
       <a href="#procurados">Procurados</a>
       <a href="#ouca">Ouça</a>
       <a href="#galeria">Galeria</a>
@@ -377,10 +417,9 @@
         <span class="eyebrow">Novo Single</span>
         <h1 class="hero-title" id="glitchTitle">MAIS<br>LETAL</h1>
         <p class="hero-artists">WT DOS SANTOS <span class="x">×</span> CEO CORAGE</p>
-        <!-- EDITAR: coloque aqui a descrição real do single, se quiser uma -->
-        <p class="hero-desc">[ escreva aqui uma frase curta sobre a faixa, ou apague esta linha ]</p>
+        <p class="hero-desc">As letras retratam os sacrifícios e renúncias de quem escolhe viver da música, mostrando o quanto esse sonho pode cobrar.</p>
         <div class="hero-actions">
-          <a href="#ouca" class="btn primary">▶ Ouvir Agora</a>
+          <a href="#ouca" class="btn primary" id="heroListenBtn">▶ Ouvir Agora</a>
           <a href="#sobre" class="btn ghost">Sobre</a>
         </div>
       </div>
@@ -389,19 +428,38 @@
 
   <div class="rip-top"></div>
 
+  <!-- ===== MAKING OF ===== -->
+  <section id="makingof" class="makingof">
+    <div class="section-head">
+      <span class="eyebrow">Arquivo Confidencial</span>
+      <h2 class="section-title">Bastidores do Lançamento</h2>
+    </div>
+    <div class="makingof-frame reveal jitter">
+      <div class="polaroid-tape"></div>
+      <div class="video-wrap">
+        <video controls playsinline preload="metadata">
+          <source src="video/making-of.mp4" type="video/mp4">
+          Seu navegador não suporta vídeo em HTML5.
+        </video>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider" style="max-width:1180px;"></div>
+
   <!-- ===== SOBRE ===== -->
   <section id="sobre" class="about">
     <div class="about-art reveal jitter">
-      <img src="assets/gothic-frame.png" alt="Emblema Mais Letal">
+      <img src="assets/cover-frame-badge.png" alt="Capa Mais Letal — Novo Império">
     </div>
     <div class="about-text">
       <span class="eyebrow">O lançamento</span>
-      <h2 class="section-title" style="margin:14px 0 26px;">Sobre o single</h2>
-      <!-- EDITAR: substitua este parágrafo pela descrição real que vocês quiserem usar -->
-      <p>[ espaço para o texto sobre a faixa — quem fez, de onde veio, o que ela representa. Escreva do seu jeito. ]</p>
+      <h2 class="section-title" style="margin:14px 0 26px;">Sobre o lançamento</h2>
+      <p>"Mais Letal" é o novo single de Wt dos Santos e CEO Corage. A faixa aborda os sacrifícios, as renúncias e as consequências de quem escolhe viver da música em um cenário que muitas vezes não oferece retorno.</p>
+      <p>A música também reflete sobre a realidade de muitos jovens que, diante da falta de oportunidades e de falsas promessas, acabam sendo consumidos por caminhos sem volta.</p>
+      <p>Sem romantizar essa realidade, a faixa reforça a importância de permanecer firme, mantendo a própria identidade mesmo diante das adversidades.</p>
       <div class="stamp-row">
-        <span>Prod. by WTD</span>
-        <span>Voando Alto Studio</span>
+        <span>Prod. by GUIMARÃEZ</span>
         <span>Novo Império</span>
       </div>
     </div>
@@ -424,26 +482,26 @@
   <!-- ===== OUÇA ===== -->
   <section id="ouca" class="listen">
     <div class="section-head">
-      <span class="eyebrow">Já tá tocando</span>
+      <span class="eyebrow" id="listenEyebrow">Já tá tocando</span>
       <h2 class="section-title">Ouça Mais Letal</h2>
     </div>
-    <div class="platform-grid">
-      <a class="platform" href="#" target="_blank" rel="noopener">
+    <div class="platform-grid" id="platformGrid">
+      <a class="platform" data-platform href="#" target="_blank" rel="noopener">
         <span class="name">Spotify</span><span class="go">Tocar →</span>
       </a>
-      <a class="platform" href="#" target="_blank" rel="noopener">
+      <a class="platform" data-platform href="#" target="_blank" rel="noopener">
         <span class="name">Apple Music</span><span class="go">Tocar →</span>
       </a>
-      <a class="platform" href="#" target="_blank" rel="noopener">
+      <a class="platform" data-platform href="#" target="_blank" rel="noopener">
         <span class="name">YouTube</span><span class="go">Assistir →</span>
       </a>
-      <a class="platform" href="#" target="_blank" rel="noopener">
+      <a class="platform" data-platform href="#" target="_blank" rel="noopener">
         <span class="name">Deezer</span><span class="go">Tocar →</span>
       </a>
-      <a class="platform" href="#" target="_blank" rel="noopener">
+      <a class="platform" data-platform href="#" target="_blank" rel="noopener">
         <span class="name">Amazon Music</span><span class="go">Tocar →</span>
       </a>
-      <a class="platform" href="https://www.instagram.com/novoimper7o/" target="_blank" rel="noopener">
+      <a class="platform social" href="https://www.instagram.com/novoimper7o/" target="_blank" rel="noopener">
         <span class="name">Instagram</span><span class="go">Seguir →</span>
       </a>
     </div>
@@ -452,7 +510,7 @@
   <!-- ===== GALERIA ===== -->
   <section id="galeria">
     <div class="section-head">
-      <span class="eyebrow">Bastidores</span>
+      <span class="eyebrow">Registros</span>
       <h2 class="section-title">Galeria</h2>
     </div>
     <div class="gallery">
@@ -463,7 +521,7 @@
       </div>
       <div class="gal-item reveal jitter">
         <div class="polaroid-tape"></div>
-        <div class="frame"><img src="assets/vinyl-wrapped.png" alt="Vinil lacrado"></div>
+        <div class="frame"><img src="assets/cover-vinyl-final.png" alt="Vinil lacrado"></div>
         <span class="tag">Edição física</span>
       </div>
       <div class="gal-item reveal jitter">
@@ -477,13 +535,10 @@
   <div class="rip-top"></div>
 
   <footer>
-    <div class="footer-seal"><img src="assets/logo-pyramid-cutout.png" alt="Novo Império"></div>
-    <p class="imperio">NOVO IMPÉRIO</p>
-    <p class="imperio-sub">UNDERGROUND STUDIO</p>
-    <img class="lockup" src="assets/logo-lockup.png" alt="Mais Letal — selo Novo Império / Voando Alto Underground Studio">
     <div class="footer-links">
       <a href="#topo">Topo</a>
       <a href="#sobre">O Single</a>
+      <a href="#makingof">Bastidores</a>
       <a href="#procurados">Procurados</a>
       <a href="#ouca">Ouça</a>
       <a href="https://www.instagram.com/novoimper7o/" target="_blank" rel="noopener">Instagram</a>
@@ -539,6 +594,31 @@
         });
       }, {threshold:.2});
       items.forEach(function(el){ io.observe(el); });
+    })();
+
+    // bloqueio "Em breve" até o lançamento (30/08/2026, horário de Brasília)
+    (function(){
+      var releaseDate = new Date('2026-08-30T00:00:00-03:00');
+      var now = new Date();
+      var locked = now < releaseDate;
+
+      var listenSection = document.getElementById('ouca');
+      var eyebrow = document.getElementById('listenEyebrow');
+      var heroBtn = document.getElementById('heroListenBtn');
+
+      if(locked){
+        listenSection.classList.add('locked');
+        eyebrow.textContent = 'Ouça Mais Letal dia 30/08 em todas as plataformas';
+
+        heroBtn.classList.add('locked', 'corner-lock');
+        heroBtn.setAttribute('aria-disabled','true');
+        heroBtn.addEventListener('click', function(e){ e.preventDefault(); });
+
+        document.querySelectorAll('#platformGrid a[data-platform]').forEach(function(a){
+          a.classList.add('corner-lock');
+          a.addEventListener('click', function(e){ e.preventDefault(); });
+        });
+      }
     })();
   </script>
 </body>
