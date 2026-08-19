@@ -235,6 +235,57 @@
     margin:0 auto;
   }
 
+  /* ===== contagem (clipe no YouTube) — faixa compacta logo após o hero ===== */
+  .countdown-strip{
+    position:relative; z-index:3;
+    background:
+      linear-gradient(180deg, rgba(138,42,30,.09), rgba(138,42,30,0) 70%),
+      var(--black-2);
+    border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+    padding:20px 24px;
+    max-width:none;
+  }
+  .countdown-strip-inner{
+    max-width:1180px; margin:0 auto;
+    display:flex; align-items:center; justify-content:center; gap:22px; flex-wrap:wrap;
+  }
+  .countdown-strip-label{display:flex; flex-direction:column; gap:3px;}
+  .countdown-strip-label .eyebrow{font-size:.6rem;}
+  .countdown-strip-title{
+    font-family:'Rye', serif; font-size:.98rem; color:var(--bone); letter-spacing:.01em;
+  }
+  .countdown-timer{display:flex; gap:8px; flex-wrap:wrap; justify-content:center;}
+  .countdown-unit{
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    border:1px solid var(--line); background:rgba(231,223,201,.02);
+    padding:8px 9px; min-width:50px;
+  }
+  .countdown-unit .num{
+    font-family:'Rye', serif; font-size:1.25rem; color:var(--bone); line-height:1;
+    font-variant-numeric:tabular-nums;
+  }
+  .countdown-unit .lbl{
+    font-family:'Special Elite',monospace; font-size:.5rem; letter-spacing:.1em; text-transform:uppercase;
+    color:var(--ash); margin-top:5px;
+  }
+  .countdown-target{
+    font-family:'Special Elite',monospace; font-size:.62rem; color:var(--ash-dim); letter-spacing:.05em;
+    white-space:nowrap;
+  }
+  .countdown-live .countdown-timer{display:none;}
+  .countdown-live .countdown-target{display:none;}
+  .countdown-live-msg{
+    display:none;
+    font-family:'Rye',serif; font-size:.98rem; color:var(--rust-bright);
+    letter-spacing:.02em; white-space:nowrap;
+  }
+  .countdown-live .countdown-live-msg{display:block;}
+  .btn.small{padding:10px 16px; font-size:.66rem;}
+
+  @media (max-width:700px){
+    .countdown-strip-inner{justify-content:flex-start; text-align:left;}
+  }
+
   /* ===== about ===== */
   .about{display:grid; grid-template-columns: .9fr 1.1fr; gap:60px; align-items:center;}
   .about-art{position:relative;}
@@ -354,6 +405,51 @@
     letter-spacing:.1em; text-transform:uppercase; color:#1a1712;
   }
 
+  /* ===== assista também — carrossel infinito ===== */
+  .watch-also{
+    background:var(--black);
+    border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+    padding-left:0; padding-right:0; max-width:none;
+  }
+  .watch-also .section-head{padding:0 24px;}
+  .marquee-viewport{
+    width:100%; overflow:hidden; position:relative;
+    -webkit-mask-image:linear-gradient(to right, transparent, black 6%, black 94%, transparent);
+    mask-image:linear-gradient(to right, transparent, black 6%, black 94%, transparent);
+  }
+  .marquee-track{
+    display:flex; gap:22px; width:max-content;
+    will-change:transform;
+  }
+  .watch-card{
+    flex:0 0 auto; width:270px; border:1px solid var(--line); background:var(--black-2);
+    transition:border-color .25s ease;
+  }
+  .watch-card:hover{border-color:var(--rust-bright);}
+  .watch-card .thumb{position:relative; aspect-ratio:16/9; overflow:hidden; background:#000;}
+  .watch-card .thumb img{
+    width:100%; height:100%; object-fit:cover;
+    filter:grayscale(.55) contrast(1.05);
+    transition:filter .3s ease, transform .4s ease;
+  }
+  .watch-card:hover .thumb img{filter:grayscale(0) contrast(1.1); transform:scale(1.05);}
+  .watch-card .play{
+    position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+    background:linear-gradient(to top, rgba(0,0,0,.35), transparent 55%);
+  }
+  .watch-card .play span{
+    width:46px; height:46px; display:flex; align-items:center; justify-content:center;
+    border-radius:50%; background:rgba(10,9,8,.55); border:1px solid rgba(231,223,201,.4);
+    color:var(--bone); font-size:.95rem; padding-left:3px;
+  }
+  .watch-card .cap{
+    padding:12px 14px;
+    font-family:'Special Elite',monospace; font-size:.68rem; letter-spacing:.1em; text-transform:uppercase; color:var(--ash);
+    display:flex; align-items:center; justify-content:space-between; gap:10px;
+  }
+  .watch-card .cap .go{color:var(--ash-dim); transition:color .2s;}
+  .watch-card:hover .cap .go{color:var(--rust-bright);}
+
   /* ===== footer ===== */
   footer{
     padding:90px 24px 50px; text-align:center; border-top:1px solid var(--line);
@@ -374,6 +470,8 @@
     .gal-item{width:100%; max-width:300px;}
     .brand .brand-logo{height:64px;}
     .makingof-frame{max-width:300px;}
+    .countdown-unit{min-width:64px; padding:12px 6px;}
+    .countdown-unit .num{font-size:1.6rem;}
   }
 </style>
 </head>
@@ -396,8 +494,10 @@
       <a href="#sobre">O Single</a>
       <a href="#makingof">Bastidores</a>
       <a href="#procurados">Procurados</a>
+      <a href="#clipe">Clipe</a>
       <a href="#ouca">Ouça</a>
       <a href="#galeria">Galeria</a>
+      <a href="#assista-tambem">Assista Também</a>
     </nav>
   </header>
 
@@ -423,6 +523,37 @@
           <a href="#sobre" class="btn ghost">Sobre</a>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- ===== CONTAGEM — CLIPE NO YOUTUBE (faixa compacta, logo após o hero) ===== -->
+  <section id="clipe" class="countdown-strip">
+    <div class="countdown-strip-inner" id="countdownWrap">
+      <div class="countdown-strip-label">
+        <span class="eyebrow">Estreia do Clipe</span>
+        <span class="countdown-strip-title">O clipe de Mais Letal chega em:</span>
+      </div>
+      <div class="countdown-timer" id="countdownTimer">
+        <div class="countdown-unit">
+          <span class="num" id="cd-days">00</span>
+          <span class="lbl">Dias</span>
+        </div>
+        <div class="countdown-unit">
+          <span class="num" id="cd-hours">00</span>
+          <span class="lbl">Horas</span>
+        </div>
+        <div class="countdown-unit">
+          <span class="num" id="cd-minutes">00</span>
+          <span class="lbl">Min</span>
+        </div>
+        <div class="countdown-unit">
+          <span class="num" id="cd-seconds">00</span>
+          <span class="lbl">Seg</span>
+        </div>
+      </div>
+      <p class="countdown-target">29/08 · 10h (Brasília) · YouTube</p>
+      <p class="countdown-live-msg">▶ O CLIPE JÁ ESTÁ NO AR</p>
+      <a href="https://www.youtube.com/@novoimper7o" class="btn primary small" id="clipeBtn" target="_blank" rel="noopener">Ver no YouTube</a>
     </div>
   </section>
 
@@ -531,6 +662,17 @@
     </div>
   </section>
 
+  <!-- ===== ASSISTA TAMBÉM — CARROSSEL INFINITO ===== -->
+  <section id="assista-tambem" class="watch-also">
+    <div class="section-head">
+      <span class="eyebrow">Mais do Novo Império</span>
+      <h2 class="section-title">Assista Também</h2>
+    </div>
+    <div class="marquee-viewport">
+      <div class="marquee-track" id="watchTrack"></div>
+    </div>
+  </section>
+
   <div class="rip-top"></div>
 
   <footer>
@@ -539,6 +681,7 @@
       <a href="#sobre">O Single</a>
       <a href="#makingof">Bastidores</a>
       <a href="#procurados">Procurados</a>
+      <a href="#clipe">Clipe</a>
       <a href="#ouca">Ouça</a>
       <a href="https://www.instagram.com/novoimper7o/" target="_blank" rel="noopener">Instagram</a>
     </div>
@@ -618,6 +761,132 @@
           a.addEventListener('click', function(e){ e.preventDefault(); });
         });
       }
+    })();
+
+    // contagem regressiva do clipe (29/08/2026 10h00, horário de Brasília -> YouTube)
+    (function(){
+      var CLIPE_URL = 'https://www.youtube.com/@novoimper7o';
+      var target = new Date('2026-08-29T10:00:00-03:00').getTime();
+
+      var wrap = document.getElementById('countdownWrap');
+      var elDays = document.getElementById('cd-days');
+      var elHours = document.getElementById('cd-hours');
+      var elMinutes = document.getElementById('cd-minutes');
+      var elSeconds = document.getElementById('cd-seconds');
+      var btn = document.getElementById('clipeBtn');
+      var timer = null;
+
+      function pad(n){ return String(n).padStart(2,'0'); }
+
+      function setLive(){
+        wrap.classList.add('countdown-live');
+        btn.classList.remove('locked');
+        btn.removeAttribute('aria-disabled');
+        btn.textContent = '▶ Assistir no YouTube';
+        btn.href = CLIPE_URL;
+        if(timer) clearInterval(timer);
+      }
+
+      function tick(){
+        var now = Date.now();
+        var diff = target - now;
+
+        if(diff <= 0){
+          setLive();
+          return;
+        }
+
+        var d = Math.floor(diff / 86400000);
+        var h = Math.floor((diff % 86400000) / 3600000);
+        var m = Math.floor((diff % 3600000) / 60000);
+        var s = Math.floor((diff % 60000) / 1000);
+
+        elDays.textContent = pad(d);
+        elHours.textContent = pad(h);
+        elMinutes.textContent = pad(m);
+        elSeconds.textContent = pad(s);
+      }
+
+      // antes da estreia, o botão fica travado (o clipe ainda não existe no canal)
+      if(Date.now() < target){
+        btn.classList.add('locked', 'corner-lock');
+        btn.setAttribute('aria-disabled', 'true');
+        btn.addEventListener('click', function(e){ e.preventDefault(); });
+      } else {
+        setLive();
+      }
+
+      tick();
+      timer = setInterval(tick, 1000);
+    })();
+
+    // carrossel "assista também" — thumbs do YouTube, rolagem contínua para a direita,
+    // loop infinito sem emenda, pausa no hover e retoma exatamente de onde parou
+    (function(){
+      var videos = [
+        { id: '7wc3ofXILWY' },
+        { id: '2gq26c1ctLY' },
+        { id: '9xaixrKXnhE' },
+        { id: 'hUszc8Ljj3Y' },
+        { id: 'xKXCAASvonY' }
+      ];
+
+      var viewport = document.querySelector('.marquee-viewport');
+      var track = document.getElementById('watchTrack');
+      if(!viewport || !track) return;
+
+      function buildCard(v){
+        var a = document.createElement('a');
+        a.className = 'watch-card';
+        a.href = 'https://www.youtube.com/watch?v=' + v.id;
+        a.target = '_blank';
+        a.rel = 'noopener';
+
+        a.innerHTML =
+          '<div class="thumb">' +
+            '<img src="https://img.youtube.com/vi/' + v.id + '/hqdefault.jpg" alt="Vídeo Novo Império" decoding="async">' +
+            '<div class="play"><span>▶</span></div>' +
+          '</div>' +
+          '<div class="cap"><span>Novo Império</span><span class="go">Assistir →</span></div>';
+
+        return a;
+      }
+
+      // a lista é duplicada (2x) para o loop ficar perfeitamente contínuo
+      [videos, videos].forEach(function(set){
+        set.forEach(function(v){
+          track.appendChild(buildCard(v));
+        });
+      });
+
+      var SPEED = 55; // pixels por segundo (troque o sinal pra girar pro outro lado)
+      var halfWidth = 0;
+      var distance = 0;
+      var paused = false;
+      var lastTs = null;
+
+      function measure(){
+        halfWidth = track.scrollWidth / 2;
+        track.style.transform = 'translateX(0px)';
+      }
+      measure();
+      window.addEventListener('resize', measure);
+
+      function frame(ts){
+        if(lastTs !== null && !paused && halfWidth > 0){
+          var dt = (ts - lastTs) / 1000;
+          distance += SPEED * dt;
+          // módulo "seguro" (sempre positivo) faz o loop ficar contínuo nos dois sentidos
+          var mod = ((distance % halfWidth) + halfWidth) % halfWidth;
+          track.style.transform = 'translateX(' + (-mod) + 'px)';
+        }
+        lastTs = ts;
+        requestAnimationFrame(frame);
+      }
+      requestAnimationFrame(frame);
+
+      viewport.addEventListener('mouseenter', function(){ paused = true; });
+      viewport.addEventListener('mouseleave', function(){ paused = false; });
     })();
   </script>
 </body>
